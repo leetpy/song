@@ -1,4 +1,4 @@
-[中文版](README-CN.md)
+Englinsh | [中文](README-CN.md)
 
 # About
 

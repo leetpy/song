@@ -6,13 +6,36 @@ package handler
 import (
 	"net/http"
 
+	"server/api/app/common/errorx"
+	"server/api/app/common/response"
 	user "server/api/app/internal/handler/user"
 	"server/api/app/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
+	// 自定义错误处理
+	httpx.SetErrorHandler(func(err error) (int, any) {
+		switch e := err.(type) {
+		case *errorx.CodeError:
+			// 业务错误,返回 200 + code
+			return http.StatusOK, &response.Body{
+				Code: e.GetCode(),
+				Msg:  e.GetMsg(),
+				Data: nil,
+			}
+		default:
+			// 系统错误,返回 500
+			return http.StatusInternalServerError, &response.Body{
+				Code: errorx.ErrCodeSystem,
+				Msg:  "系统错误",
+				Data: nil,
+			}
+		}
+	})
+
 	server.AddRoutes(
 		[]rest.Route{
 			{
