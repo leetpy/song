@@ -1,0 +1,10 @@
+syntax = "v1"
+
+info (
+	title:   "Web API"
+	desc:    "song"
+	author:  "yunyi"
+	version: "v1.0"
+)
+
+import "desc/user.api"

@@ -1,0 +1,30 @@
+syntax = "v1"
+
+info (
+	title:   "用户模块"
+	desc:    "用户登录、注册、管理"
+	version: "v1.0"
+)
+
+// 登录请求
+type LoginReq {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type LoginResp {
+	Token    string `json:"token"`
+	UserId   int64  `json:"userId"`
+	Username string `json:"username"`
+}
+
+// 用户服务 - 公开接口
+@server (
+	prefix: /api/v1
+	group:  user
+)
+service app {
+	@handler LoginHandler
+	post /user/login (LoginReq) returns (LoginResp)
+}
+
