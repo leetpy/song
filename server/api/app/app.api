@@ -8,3 +8,5 @@ info (
 )
 
 import "desc/user.api"
+import "desc/person.api"
+import "desc/emperor.api"

@@ -3,6 +3,14 @@
 
 package types
 
+type AddPersonReq struct {
+	Name string `json:"name"`
+}
+
+type AddPersonResp struct {
+	Status string `json:"status"`
+}
+
 type LoginReq struct {
 	Username string `json:"username"`
 	Password string `json:"password"`

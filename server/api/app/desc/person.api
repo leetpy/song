@@ -1,0 +1,16 @@
+syntax = "v1"
+
+info (
+	title:   "人物模块"
+	desc:    "管理"
+	version: "v1.0"
+)
+
+type AddPersonReq {
+	Name string `json:"name"`
+}
+
+type AddPersonResp {
+	Status string `json:"status"`
+}
+
